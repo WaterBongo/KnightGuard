@@ -7,16 +7,20 @@ socketio = SocketIO(app)
 # AI-Powered Monitoring WEBSOCKET
 @socketio.on('monitoring_status')
 def monitoring_status(data):
-
-
+    danger_amount = ai_anaysis.check_danger(data)
+    emit('monitoring_status', danger_amount)
     # Emit updates to the client here.
-    pass
+    
     # You can use: emit('monitoring_status', {your data})
 
 # Panic Button REQUEST
 @app.route('/panic', methods=['POST'])
 def trigger_panic_button():
     pass
+
+@app.route('/')
+def world():
+    return 'sex'
 
 # Real-time Location Tracking WEBSOCKET
 @socketio.on('location')
