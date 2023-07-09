@@ -19,6 +19,10 @@ def home():
 def security_camera():
   return render_template("camera.html")
 
+@app.route("/employee_map/")
+def employee_map():
+  return render_template("map.html")
+
 @app.route("/monitoring_status", websocket=True)
 def monitoring_status(websocket):
   while True:
