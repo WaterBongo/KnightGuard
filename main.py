@@ -24,6 +24,7 @@ def monitoring_status(websocket):
     if type(image) == str:
       return (1000, "Client left")
     else:
+      print(type(image))
       websocket.send(str(ai_analysis.analyze(image)))
 
 app.run(host="0.0.0.0")
