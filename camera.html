@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="icon.png" />
+    <!-- Viewport Code -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Title -->
+    <title>KnightGuard</title>
+  
+    <!-- Authentication -->
+    <script src="login.js"></script>
+  
+    <!-- Tailwind/Daisy -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.0.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Socket.io JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js"></script>
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <a class="btn btn-ghost normal-case text-xl" href="/">
+          <img src="/icon.png" style="height: 45px;">
+          <span style="color:blue;margin-right:-7px !important">Knight</span>Guard
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="/">Home</a></li>
+          <li><a href="/security_camera/">Security Camera</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <button onclick="window.Clerk.openSignIn()" class="btn btn-primary" id="sign_in">Sign In</button>
+        <div id="user-button" style="margin-right: 5px !important; display: none !important;"></div>
+      </div>
+    </div>
+  
+    <!-- Content -->
+    <div style="margin: 2.5vw;">
+      <div>
+        <video id="cameraStream" autoplay playsinline style="display: block; margin-left: auto; margin-right: auto;"></video>
+        <br>
+        <div style="flex-direction: row; display: flex; justify-content: center;">
+          <pre>Probability: </pre>
+          <pre id="percentProbability"></pre>
+        </div>
+      </div>
+      <script defer>
+          var socket = io();
+          var video = document.getElementById("cameraStream");
+          var percentProbability = document.getElementById("percentProbability");
+          var canvas, ctx;
+  
+          // Check if the user's browser supports getUserMedia
+          if (navigator.mediaDevices.getUserMedia) {
+              navigator.mediaDevices.getUserMedia({ video: true })
+                  .then(function (stream) {
+                      video.srcObject = stream;
+                  });
+          }
+  
+          function asyncSetInterval(fn, delay) {
+              return new Promise(resolve => {
+                  function run() {
+                      Promise.resolve(fn()).then(() => {
+                          setTimeout(run, delay);
+                      });
+                  }
+                  run();
+              });
+          }
+          
+          
+          asyncSetInterval(async function() {
+              canvas = document.createElement("canvas");
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              ctx = canvas.getContext("2d");
+              ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+              blob = await new Promise((resolve, reject) => {
+                  canvas.toBlob(blob => {
+                      resolve(blob);
+                  });
+              });
+              socket.emit("monitoring_status", blob);
+          }, 100);
+
+          socket.on("monitoring_status_output", (arg, callback) => {
+              var prob = parseInt(arg);
+              if (prob < 0.4) {
+                  percentProbability.innerText = (prob*100).toString() + "%";
+                  percentProbability.style.color = "green";
+              } else if (prob > 0.7) {
+                  percentProbability.innerText = (prob*100).toString() + "%";
+                  percentProbability.style.color = "red";
+              } else {
+                  percentProbability.innerText = (prob*100).toString() + "%";
+                  percentProbability.style.color = "yellow";
+              }
+          });
+      </script>
+    </div>
+  
+    <!-- Footer -->
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <div>
+        <p>&copy; 2023 - All rights reserved by QuickFix</p>
+      </div>
+    </footer>
+  </body>
+</html>

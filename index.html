@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="icon.png" />
+    <!-- Viewport Code -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Title -->
+    <title>KnightGuard</title>
+  
+    <!-- Authentication -->
+    <script src="login.js"></script>
+  
+    <!-- Tailwind/Daisy -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.0.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <a class="btn btn-ghost normal-case text-xl" href="/">
+          <img src="/icon.png" style="height: 45px;">
+          <span style="color:blue;margin-right:-7px !important">Knight</span>Guard
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="/">Home</a></li>
+          <li><a href="/security_camera/">Security Camera</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <button onclick="window.Clerk.openSignIn()" class="btn btn-primary" id="sign_in">Sign In</button>
+        <div id="user-button" style="margin-right: 5px !important; display: none !important;"></div>
+      </div>
+    </div>
+  
+    <!-- Content -->
+    <div class="hero min-h-screen" style="background-image: url(hero.png);">
+      <div class="hero-overlay bg-opacity-60"></div>
+      <div class="hero-content text-center text-neutral-content">
+        <div class="max-w-md">
+          <h1 class="mb-5 text-5xl font-bold">KnightGuard</h1>
+          <p class="mb-5">The one stop, best way to safeguard your privacy at night. Quickly get help in dangerous situations and be ready for any danger that might arrive.</p>
+          <button class="btn btn-primary">Get Started</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer -->
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <div>
+        <p>&copy; 2023 - All rights reserved by QuickFix</p>
+      </div>
+    </footer>
+  </body>
+</html>
