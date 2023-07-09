@@ -1,8 +1,9 @@
 from flask import Flask, request
 from flask_socketio import SocketIO, send, emit
-import ai_anaysis
+import ai_anaysis,flask_cors
 app = Flask(__name__)
-socketio = SocketIO(app)
+flask_cors.CORS(app)
+socketio = SocketIO(app, cors_allowed_origins=['https://crookedwrybase.epiccodewizard2.repl.co/'])
 users = {
     0 : {"long": None,
          "lat" : None,
@@ -27,8 +28,9 @@ accidents = [
 # AI-Powered Monitoring WEBSOCKET DONE
 @socketio.on('monitoring_status')
 def monitoring_status(data):
-    danger_amount = ai_anaysis.check_danger(data)
-    emit('monitoring_status', danger_amount)
+    print(data)
+    # danger_amount = ai_anaysis.check_danger(data)
+    # emit('monitoring_status', danger_amount)
     # Emit updates to the client here.
     # {
     #     'probability': probability,
