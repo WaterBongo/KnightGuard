@@ -1,4 +1,4 @@
-const socket = new WebSocket("/monitoring_status");
+const socket = new WebSocket("wss://knightguard.epiccodewizard2.repl.co/monitoring_status");
 var video = document.getElementById("cameraStream");
 var percentProbability = document.getElementById("percentProbability");
 var canvas, ctx;
@@ -21,7 +21,6 @@ function asyncSetInterval(fn, delay) {
     });
 }
 
-
 asyncSetInterval(async function() {
     canvas = document.createElement("canvas");
     canvas.width = video.videoWidth;
@@ -33,7 +32,17 @@ asyncSetInterval(async function() {
             resolve(blob);
         });
     });
-    socket.send(blob);
+    if (blob !== null) {
+        try {
+            socket.send(blob);
+        } catch {
+            await new Promise((resolve, reject) => {
+                socket.addEventListener("open", resolve);
+                socket.addEventListener("error", reject);
+            });
+            socket.send(blob);
+        }
+    }
 }, 100);
 
 socket.addEventListener("message", (event) => {
