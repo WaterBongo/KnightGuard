@@ -1,4 +1,4 @@
-# KnightGuard ⚔️
+# KnightGuard AI ⚔️
 The one stop, best way to safeguard your privacy at night. Quickly get help in dangerous situations and be ready for any danger that might arrive.
 
 ### Correlation to Theme
