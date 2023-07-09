@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, send, emit
 import ai_anaysis,flask_cors
 app = Flask(__name__)
 flask_cors.CORS(app)
-socketio = SocketIO(app, cors_allowed_origins=['https://crookedwrybase.epiccodewizard2.repl.co/'])
+socketio = SocketIO(app, cors_allowed_origins=['https://crookedwrybase.epiccodewizard2.repl.co/     '])
 users = {
     0 : {"long": None,
          "lat" : None,
