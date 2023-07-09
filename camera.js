@@ -43,7 +43,7 @@ asyncSetInterval(async function() {
             socket.send(blob);
         }
     }
-}, 100);
+}, 1000);
 
 socket.addEventListener("message", (event) => {
     var prob = parseFloat(event.data);
