@@ -1,9 +1,8 @@
-var socket = io();
+const socket = new WebSocket("/monitoring_status");
 var video = document.getElementById("cameraStream");
 var percentProbability = document.getElementById("percentProbability");
 var canvas, ctx;
 
-// Check if the user's browser supports getUserMedia
 if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
         .then(function (stream) {
@@ -34,11 +33,11 @@ asyncSetInterval(async function() {
             resolve(blob);
         });
     });
-    socket.emit("monitoring_status", blob);
+    socket.send(blob);
 }, 100);
 
-socket.on("monitoring_status_output", (arg, callback) => {
-    var prob = parseInt(arg);
+socket.addEventListener("message", (event) => {
+    var prob = parseInt(event.data);
     if (prob < 0.4) {
         percentProbability.innerText = (prob*100).toString() + "%";
         percentProbability.style.color = "green";
