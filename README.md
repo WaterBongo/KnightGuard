@@ -1,4 +1,4 @@
-# KnightGuard
+# KnightGuard ⚔️
 The one stop, best way to safeguard your privacy at night. Quickly get help in dangerous situations and be ready for any danger that might arrive.
 
 ### Correlation to Theme
@@ -30,10 +30,10 @@ For our presentation, we wanted to focus on one of the most important people in 
   - Improved safety measures and prompt response to emergencies
 - Addressing Isolation & Mental Health
   - Mitigation of feelings of isolation through community building and peer support network
-Avoid Accidents!
+- Avoid Accidents!
   - Incident reporting and prevention system identifies common safety concerns and drives Improvements in policies and regulations 
   - Automatically knows what areas to avoid after viewing are accident map.
-Assemble In Numbers!
+- Assemble In Numbers!
   - You are not alone, connect yourself to others that also take night shifts in similar areas!
   - Fostering a supportive work environment and societal recognition of their contributions
 
