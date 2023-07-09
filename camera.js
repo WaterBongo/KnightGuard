@@ -46,7 +46,7 @@ asyncSetInterval(async function() {
 }, 100);
 
 socket.addEventListener("message", (event) => {
-    var prob = parseInt(event.data);
+    var prob = parseFloat(event.data);
     if (prob < 0.4) {
         percentProbability.innerText = (prob*100).toString() + "%";
         percentProbability.style.color = "green";

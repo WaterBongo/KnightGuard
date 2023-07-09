@@ -2,6 +2,8 @@ from flask_websocket import patch_flask_websocket
 from flask_cors import *
 from flask import *
 import ai_analysis
+import PIL
+import io
 
 app = Flask(__name__, template_folder="", static_folder="")
 patch_flask_websocket(app)
@@ -21,10 +23,9 @@ def security_camera():
 def monitoring_status(websocket):
   while True:
     image = websocket.receive()
-    # if type(image) == str:
-    #   return (1000, "Client left")
-    # else:
-    print(type(image))
-    websocket.send(str(ai_analysis.analyze(image)))
+    if type(image) == str:
+      return (1000, "Client left")
+    else:
+      websocket.send(str(ai_analysis.analyze(numpy.asarray(PIL.Image.open(io.BytesIO(image))))))
 
 app.run(host="0.0.0.0")
