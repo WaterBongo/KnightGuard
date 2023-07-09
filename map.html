@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <!-- Viewport Code -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Title -->
+    <title>KnightGuard</title>
+  
+    <!-- Authentication -->
+    <script src="/login.js"></script>
+  
+    <!-- Tailwind/Daisy -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.0.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <a class="btn btn-ghost normal-case text-xl" href="/">
+          <img src="/icon.png" style="height: 45px;">
+          <span style="color:blue;margin-right:-7px !important">Knight</span>Guard
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="/">Home</a></li>
+          <li><a href="/security_camera/">Security Camera</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <button onclick="window.Clerk.openSignIn()" class="btn btn-primary" id="sign_in">Sign In</button>
+        <div id="user-button" style="margin-right: 5px !important; display: none !important;"></div>
+      </div>
+    </div>
+  
+    <!-- Content -->
+    <div style="margin: 2.5vw;">
+      <div id="map" style="justify-content: center !important; width: 90vw; height: 75vh; display: block; margin-left: auto; margin-right: auto;"></div>
+    </div>
+    <script src="/map.js" defer></script>
+  </body>
+</html>
