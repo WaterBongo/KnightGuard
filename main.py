@@ -2,14 +2,19 @@ from flask_websocket import patch_flask_websocket
 from flask_cors import *
 from flask import *
 import ai_analysis
+import requests
 import json
 
 app = Flask(__name__, template_folder="", static_folder="")
 patch_flask_websocket(app)
 cors = CORS(app)
 locations = {}
+tokens = ["ExponentPushToken[DHYiooCAW8_1AiWolIwdvc]"]
 app.config["CORS_HEADERS"] = "Content-Type"
 # @cross_origin()
+
+def notify(title, body, token):
+  return requests.post("https://exp.host/--/api/v2/push/send", json={"to": token, "sound": "default", "title": title, "body": body})
 
 @app.route("/")
 def home():
@@ -22,6 +27,14 @@ def security_camera():
 @app.route("/employee_map/")
 def employee_map():
   return render_template("map.html")
+
+@app.route("/panic", methods=["POST"])
+def panic():
+  lat = request.json["lat"]
+  long = request.json["long"]
+  for token in tokens:
+    print(notify("Danger Alert", "An employee near you has reported suspicious activity. Proceed with caution and dial 911 if you see anything.", token).text)
+  return ""
 
 @app.route("/monitoring_status", websocket=True)
 def monitoring_status(websocket):
