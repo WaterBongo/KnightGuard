@@ -26,16 +26,16 @@ For our presentation, we wanted to focus on one of the most important people in 
  
 ### Impact on Night Shift Workers
 - Enhanced Safety & Well-Being
-	- Reduction in work-related accidents and health issues among night shift workers
-	- Improved safety measures and prompt response to emergencies
+  - Reduction in work-related accidents and health issues among night shift workers
+  - Improved safety measures and prompt response to emergencies
 - Addressing Isolation & Mental Health
-	- Mitigation of feelings of isolation through community building and peer support network
+  - Mitigation of feelings of isolation through community building and peer support network
 Avoid Accidents!
-	- Incident reporting and prevention system identifies common safety concerns and drives Improvements in policies and regulations 
-	- Automatically knows what areas to avoid after viewing are accident map.
+  - Incident reporting and prevention system identifies common safety concerns and drives Improvements in policies and regulations 
+  - Automatically knows what areas to avoid after viewing are accident map.
 Assemble In Numbers!
-	- You are not alone, connect yourself to others that also take night shifts in similar areas!
-	- Fostering a supportive work environment and societal recognition of their contributions
+  - You are not alone, connect yourself to others that also take night shifts in similar areas!
+  - Fostering a supportive work environment and societal recognition of their contributions
 
 ### Glimpse In the Future
 - Intelligent Alerts: Make the AI capability to recognize anomalous patterns or sudden changes that could indicate a potential threat or health concern.
